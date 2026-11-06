@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Raspberry Pi 제어 및 모니터링</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
+      <script src= "./static/mqttio3-1.js" type="text/javascript"></script>
+      <script>
+          window.addEventListener("load", function () {
+              // http://192...5:8080/에서 192...5의 IP만 끊어내는 코드
+              let url = new String(document.location);
+              ip = (url.split("//"))[1]; // ip = "192...:8080/"
+              ip = (ip.split(":"))[0]; // ip = "192..."
+              document.getElementById("broker").value = ip
+          });
+      </script>
+   </head>
+<body>
+   <h3>Raspberry Pi 제어 및 모니터링</h3>
+   <hr>
+   <form id="connection-form">
+      <b>브로커 IP:</b>
+      <input id="broker" type="text" name="broker" value=""><br>
+      <b>포트 번호 : 9001</b><br>
+      <input type="button" onclick="connect()" value="Connect">
+      <input type="button" onclick="disconnect()" value="Disconnect">
+   </form>
+   <hr>
+   <h3>Led 제어(토픽:led)</h3>
+   <hr>
+   <form id="LED-control-form">
+      <label>on <input type="radio" id="ledOn" name="led" value="1" onclick="return publish('led', this.value)"></label>
+      <label>off <input type="radio" id="ledOff" name="led" value="0" checked onclick="return publish('led', this.value)"><br><br></label>
+   </form>
+   <hr>
+   <h3>서보 모터 제어(토픽:servo)</h3>
+   <hr>
+   <form id="servo-control-form">
+      <input type="range" id="angle" min="0" max="180" step="10" value="90" oninput="showAngle(this.value)" onchange="publish('servo', this.value)">
+      <span id="angleText">90</span>도<br><br>
+      <input type="button" value="0도" onclick="moveServo(0)">
+      <input type="button" value="90도" onclick="moveServo(90)">
+      <input type="button" value="180도" onclick="moveServo(180)">
+   </form>
+   <hr>
+   <h3>초음파 센서를 이용한 거리 측정(토픽:ultrasonic)</h3>
+   <hr>
+   <form id="subscribe-form">
+      <input type="button" onclick="subscribe('ultrasonic')" value="측정시작">
+      <input type="button" onclick="unsubscribe('ultrasonic')" value="측정중단">
+   </form>
+   <div id="messages"></div>
+   </body>
+</html>
