@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>6주차 라즈베리파이 웹서버 예제</title>
+  <style>
+    body { font-family: sans-serif; margin: 16px; background: #f4f5f7; }
+    h1 { margin: 0 0 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 12px; }
+    .card { background: #fff; border-radius: 8px; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+    .card h3 { margin: 0 0 4px; font-size: 16px; }
+    .file { color: #666; font-size: 12px; }
+    .url { font-family: monospace; font-size: 12px; margin-top: 6px; }
+    iframe { width: 100%; height: 150px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+  </style>
+</head>
+<body>
+  <h1>6주차 라즈베리파이로 웹서버 만들기 – 예제 모음</h1>
+  <div class="grid">
+  {% for port, file, title, paths in examples %}
+    <div class="card">
+      <h3>{{ title }}</h3>
+      <div class="file">{{ file }} · 포트 {{ port }}</div>
+      {% for p in paths %}
+        <div class="url"><a href="http://{{ host }}:{{ port }}{{ p }}" target="_blank">:{{ port }}{{ p }}</a></div>
+        <iframe src="http://{{ host }}:{{ port }}{{ p }}"></iframe>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  </div>
+</body>
+</html>

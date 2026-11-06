@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>시간에 따라 동적으로 변하는 온도 그래프</title>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./static/myChart2.js" type="text/javascript"></script>
+  <script>
+     window.addEventListener("load", drawChart); // load 이벤트가 발생하면 drawChart() 호출하도록 등록
+  </script>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="400"></canvas>
+  <br>
+  <button id="addData" onclick="addChartData(Math.floor(Math.random()*41))"> Add Data</button>
+  <!-- addChartData() 함수는 myChart2.js에 있음. 차트에 데이터 추가 -->
+  <button id="hideshow" onclick="hideshow()">Hide/Show Chart</button>
+</body>
+</html>

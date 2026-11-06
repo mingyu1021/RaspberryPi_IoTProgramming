@@ -1,0 +1,40 @@
+# 비밀 정보 (API 키)
+.env
+.env.*
+
+# 파이썬 가상환경 / 캐시
+.venv/
+venv/
+myenv/
+__pycache__/
+*.py[cod]
+
+# GPIO 라이브러리(lgpio)가 실행 폴더에 만드는 파이프
+.lgd-nfy*
+
+# 로그
+*.log
+logs/
+
+# 강의자료 (재배포 금지 대상일 수 있음)
+*.pdf
+
+# 컴파일 결과물
+a.out
+*.o
+
+# AI 모델 가중치, 압축파일 (용량이 크고 다시 받을 수 있음)
+*.weights
+*.pt
+*.pth
+*.onnx
+*.zip
+
+# 카메라 촬영 결과, 얼굴 데이터 (개인정보)
+ch04/image_4_*.jpg
+ch04/images/
+ch05/frame.jpg
+ch05/face_db.json
+ch06/static/cctv.jpg
+ch07/data/
+ch07/result.html
